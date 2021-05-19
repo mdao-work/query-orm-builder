@@ -1,31 +1,50 @@
-# 简介
-url 语义化，自定义查询结果，去除重复数据，节省流量提高速度。 提高开发效率
+## QueryOrmBuilder - 语义化查询构造器
 
+# 简介
+语义化查询url构造器，根据规则生成对应查询请求url，自定义查询结果，去除重复数据，节省流量提高速度，提高开发效率
 [详细文档](https://mdao-work.github.io/query-orm-builder-doc/index.html)
 
+注意：本组件需配合后端解析类[QueryOrmServer]使用 [源码地址](https://github.com/mdao-work/query-orm-server)
+
+
 # 安装
-通过 npm 安装
-在现有项目中使用 QueryOrmBuilder 时，可以通过 npm进行安装：
+1、通过 npm 方式安装使用
+
+在现有项目中使用 QueryOrmBuilder 时，可以通过 npm 进行安装：
 ```
 npm i query-orm-builder
 ```
 
-通过 `script` 标签方式引入
-使用 QueryOrmBuilder 最简单的方法是直接在 html 文件中引入 之后你可以通过全局变量 QueryOrmBuilder 访问。
+2、直接通过 `script` 标签方式引入使用
+
+下载本源码包，在具体页面，引入dist目录下的 query-orm-builder.umd.js 
 
 ``` html
-   <script src="query-orm-builder.umd.js" ></script>
+   <script src="dist/query-orm-builder.umd.js" ></script>
 ```
 
 # 使用案例
-npm 模式使用
+1、npm 模式使用
 ``` javascritp
   import QueryOrmBuilder from 'query-orm-builder'
   let queryOrm=new QueryOrmBuilder();
+  let res = queryOrm.where('id','=',100).toUriQueryString();
 ```
-或通过 `script` 标签方式引入
+
+
+2、通过 `script` 标签方式引入
 ``` javascritp
   let queryOrm=new QueryOrmBuilder();
+  let res = queryOrm.where('id','=',100).toUriQueryString();
+```
+
+上面2种方式运行的res结果都为
+```html
+  filter[id{eq}]=100 
+```
+将构建后的结果拼接到请求数据的链接上，发送到后台使用，如：
+```html
+  https://api.test.com/User/DataList?filter[id{eq}]=100 
 ```
 
 ## 表达式查询的用法示例如下： 

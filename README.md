@@ -219,7 +219,7 @@ url?select=id,date,content:text
 ```
 queryOrm.orderBy('id').toUriQueryString();
 或者
-queryOrm.orderBy('id'，'desc').toUriQueryString();
+queryOrm.orderBy('id','desc').toUriQueryString();
 ```
 生成url为
 ```
